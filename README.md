@@ -4,9 +4,19 @@ Este repositorio contiene una colección de **exámenes HTML**, **pruebas HTML**
 
 ---
 
+## 📁 Índice de Webs
+
+A continuación, encontrarás un índice que te permitirá acceder a las webs que iré añadiendo. Cada enlace llevará a la web correspondiente en el futuro:
+
+- [Web 1](#) <!-- Reemplaza con el URL correspondiente -->
+- [Web 2](#) <!-- Reemplaza con el URL correspondiente -->
+- [Web 3](#) <!-- Reemplaza con el URL correspondiente -->
+
+---
+
 ## 📁 Estructura del Repositorio
 
-El repositorio está organizado en las siguientes carpetas:
+El repositorio está organizado en las siguientes carpetas, donde cada una representará una web:
 
 
 ---
@@ -29,21 +39,9 @@ El repositorio está organizado en las siguientes carpetas:
 
 ---
 
-## 📅 Actualizaciones y Contribuciones
-
-Si deseas contribuir a este proyecto, sigue estos pasos:
-
-1. **Fork este repositorio**.
-2. Crea una nueva rama (`git checkout -b nueva-caracteristica`).
-3. Realiza tus cambios y haz un commit (`git commit -m 'Añadir nueva característica'`).
-4. Envía tus cambios (`git push origin nueva-caracteristica`).
-5. Abre un Pull Request en GitHub.
-
----
-
 ## 📄 Licencia
 
-Este proyecto está bajo la licencia [MIT](https://opensource.org/licenses/MIT). Consulta el archivo `LICENSE` para más detalles.
+Este proyecto es privado. Puedes utilizar el código y los archivos, pero asegúrate de indicarlo y dar el crédito correspondiente.
 
 ---
 
@@ -52,8 +50,8 @@ Este proyecto está bajo la licencia [MIT](https://opensource.org/licenses/MIT).
 Si tienes preguntas o sugerencias, no dudes en contactarme:
 
 - **Nombre**: Federico Lora
-- **Email**: tu-email@example.com
-- **LinkedIn**: [tu-perfil-linkedin](https://www.linkedin.com/in/tu-perfil-linkedin)
+- **Email**: [fedestalgat@gmail.com](mailto:fedestalgat@gmail.com)
+- **LinkedIn**: [www.linkedin.com/in/fedes10](https://www.linkedin.com/in/fedes10)
 
 ---
 
