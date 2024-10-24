@@ -1,12 +1,16 @@
-# 🌐 Compartidos-Fede-HTML
+# 🟢 Compartidos Fede HTML 🟢
 
 Este repositorio contiene una colección de **exámenes HTML**, **pruebas HTML** y **sitios web de ejemplo** que he creado. Es un espacio diseñado para mantener mis trabajos en la nube y facilitar su visualización.
 
+[![Web 1](https://img.shields.io/badge/Web%201-Visit%20Now-brightgreen)](#) <!-- Reemplaza con el URL correspondiente -->
+[![Web 2](https://img.shields.io/badge/Web%202-Visit%20Now-blue)](#) <!-- Reemplaza con el URL correspondiente -->
+[![Web 3](https://img.shields.io/badge/Web%203-Visit%20Now-red)](#) <!-- Reemplaza con el URL correspondiente -->
+
 ---
 
-## 📁 Índice de Webs
+## 🌐 Índice de Webs
 
-A continuación, encontrarás un índice que te permitirá acceder a las webs que iré añadiendo. Cada enlace llevará a la web correspondiente en el futuro:
+A continuación, encontrarás un índice que te permitirá acceder a las webs que iré añadiendo. Cada botón llevará a la web correspondiente en el futuro:
 
 - [Web 1](#) <!-- Reemplaza con el URL correspondiente -->
 - [Web 2](#) <!-- Reemplaza con el URL correspondiente -->
@@ -16,18 +20,7 @@ A continuación, encontrarás un índice que te permitirá acceder a las webs qu
 
 ## 📁 Estructura del Repositorio
 
-El repositorio está organizado en las siguientes carpetas, donde cada una representará una web:
-
-
----
-
-## 📖 Descripción de las Carpetas
-
-- **exámenes/**: Archivos HTML utilizados para practicar y evaluar mis conocimientos.
-  
-- **pruebas/**: Diferentes pruebas HTML y proyectos experimentales.
-
-- **ejemplos/**: Ejemplos de sitios web que he diseñado y desarrollado.
+El repositorio está organizado en carpetas, donde cada una representará una web:
 
 ---
 
@@ -51,7 +44,7 @@ Si tienes preguntas o sugerencias, no dudes en contactarme:
 
 - **Nombre**: Federico Lora
 - **Email**: [fedestalgat@gmail.com](mailto:fedestalgat@gmail.com)
-- **LinkedIn**: [www.linkedin.com/in/fedes10](https://www.linkedin.com/in/fedes10)
+- **LinkedIn**: [/in/fedes10](https://www.linkedin.com/in/fedes10)
 
 ---
 
