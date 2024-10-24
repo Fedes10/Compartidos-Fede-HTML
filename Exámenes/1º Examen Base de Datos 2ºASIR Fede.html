@@ -7,23 +7,75 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
+            background-color: #e2e2e2;
             padding: 20px;
+            padding-left: 8em;
+            padding-right: 8em;
             line-height: 1.6;
         }
+
         h1 {
             text-align: center;
+            border-bottom: 4px solid #596775;
+            border-top: 4px solid #596775;
+            color: #0057b3d5;
         }
+
         .question {
             margin: 20px 0;
             padding: 10px;
-            border: 1px solid #ddd;
-            background-color: #fff;
+            border: 1px solid #0c4661;
+            background-color: #ccd5d8f1;
             border-radius: 5px;
         }
+
         label {
             display: block;
             padding: 5px;
+            cursor: pointer;
+            color: #3f3e3e; /* Cambia el color por defecto */
+            transition: color 150ms ease-in-out;
+        }
+
+        .question > div {
+            display: inline-block;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .question input[type="radio"] {
+            appearance: none;
+            outline: none;
+            width: 1.5rem;
+            height: 1.5rem;
+            background: transparent;
+            border: 1px solid #666; /* Color de borde por defecto */
+            border-radius: 50%;
+            display: inline-block;
+            place-content: center;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .question input[type="radio"]::after {
+            content: "";
+            position: absolute;
+            inset: 0.25rem;
+            opacity: 0;
+            scale: 0;
+            transition: opacity 150ms ease-in-out, scale 150ms ease-in-out;
+            background-color: #127acf; /* Color del radio seleccionado */
+            border-radius: inherit;
+        }
+
+        .question input[type="radio"]:hover,
+        .question input[type="radio"]:focus-visible {
+            border-color: #09a5c0; /* Color en hover o foco */
+        }
+
+        .question input[type="radio"]:checked::after {
+            opacity: 1;
+            scale: 1;
         }
         .submit-btn {
             display: block;
