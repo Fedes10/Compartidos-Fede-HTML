@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Examen Tipo Test TEMA 1</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -33,7 +35,7 @@
             display: block;
             padding: 5px;
             cursor: pointer;
-            color: #3f3e3e; /* Cambia el color por defecto */
+            color: #3f3e3e;
             transition: color 150ms ease-in-out;
         }
 
@@ -49,7 +51,7 @@
             width: 1.5rem;
             height: 1.5rem;
             background: transparent;
-            border: 1px solid #666; /* Color de borde por defecto */
+            border: 1px solid #666;
             border-radius: 50%;
             display: inline-block;
             place-content: center;
@@ -64,19 +66,35 @@
             opacity: 0;
             scale: 0;
             transition: opacity 150ms ease-in-out, scale 150ms ease-in-out;
-            background-color: #127acf; /* Color del radio seleccionado */
+            background-color: #127acf;
             border-radius: inherit;
         }
 
         .question input[type="radio"]:hover,
         .question input[type="radio"]:focus-visible {
-            border-color: #09a5c0; /* Color en hover o foco */
+            border-color: #09a5c0;
         }
 
         .question input[type="radio"]:checked::after {
             opacity: 1;
             scale: 1;
         }
+
+        .feedback {
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        .correct {
+            color: #28a745;
+        }
+        .incorrect {
+            color: #dc3545;
+        }
+        .empty-result {
+            color: #b98d07;
+        }
+
         .submit-btn {
             display: block;
             width: 100%;
@@ -89,14 +107,48 @@
             font-size: 18px;
             cursor: pointer;
         }
+
         .submit-btn:hover {
             background-color: #0056b3;
         }
+
         .result {
             text-align: center;
-            margin-top: 20px;
+            margin-top: 0px;
             font-size: 20px;
             font-weight: bold;
+            padding: 3px;
+            background-color: #f1f4f9;
+            border: 2px solid #007bff;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .result span {
+            display: block;
+            font-size: 18px;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 1em;
+            margin-top: 20px;
+        }
+
+        .filter-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .filter-btn:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
@@ -104,6 +156,33 @@
 
 <h1>Test - TEMA 1 IMPLANTACIÓN DE SISTEMAS GESTORES DE BASES DE DATOS - Federico</h1>
 
+<!-- Caja resultados -->
+<div id="result" class="result"></div>
+
+<!-- Botones Ordenar -->
+<div class="button-group" style="text-align: center;">
+    <div style="display: flex; justify-content: center; margin-top: 10px;">
+        <button type="button" class="filter-btn" onclick="mostrarCorrectas()" style="background-color: rgba(6, 161, 11, 0.836); margin-right: 5em; flex: 1; height: 39px; width: 171.75px;">
+            <i class="fas fa-check-circle"></i> Ver Correctas
+        </button>
+        <div style="margin-bottom: 10px;">
+            <button type="button" class="filter-btn" onclick="mostrarTodas()" style="background-color: rgb(106, 67, 151); flex: 1; text-align: center; height: 39px; width: 171.75px; margin-right: 1em;">
+                <i class="fas fa-list"></i> Ver Todas
+            </button>
+        </div>
+        <div>
+            <button type="button" class="filter-btn" onclick="mostrarNoContestadas()" style="background-color: rgba(185, 122, 4, 0.877); margin-right: 5em; flex: 1; height: 39px; width: 190.75px;">
+                <i class="fas fa-question-circle"></i> Ver No Contestadas
+            </button>
+        </div>
+        <button type="button" class="filter-btn" onclick="mostrarIncorrectas()" style="background-color: rgba(201, 0, 0, 0.795); flex: 1; height: 39px; width: 171.75px;">
+            <i class="fas fa-times-circle"></i> Ver Incorrectas
+        </button>
+    </div>
+</div>
+
+
+<!-- Formulario -->
 <form id="quizForm">
 
     <div class="question">
@@ -112,84 +191,97 @@
         <label><input type="radio" name="q1" value="b"> Un sistema que permite la creación y gestión de bases de datos.</label>
         <label><input type="radio" name="q1" value="c"> Un protocolo de red para compartir datos.</label>
         <label><input type="radio" name="q1" value="d"> Un lenguaje de programación.</label>
+        <div id="feedback1" class="feedback"></div>
     </div>
-
+    
     <div class="question">
         <h3>2. ¿Cuál de las siguientes es una característica clave de un SGBD relacional?</h3>
         <label><input type="radio" name="q2" value="a"> Almacena datos en formato jerárquico.</label>
         <label><input type="radio" name="q2" value="b"> Utiliza tablas para organizar los datos.</label>
         <label><input type="radio" name="q2" value="c"> No permite consultas SQL.</label>
         <label><input type="radio" name="q2" value="d"> Solo soporta una transacción a la vez.</label>
+        <div id="feedback2" class="feedback"></div>
     </div>
-
+    
     <div class="question">
         <h3>3. ¿Qué comando SQL se usa para crear una base de datos en Oracle?</h3>
         <label><input type="radio" name="q3" value="a"> CREATE DATABASE</label>
         <label><input type="radio" name="q3" value="b"> CREATE SCHEMA</label>
         <label><input type="radio" name="q3" value="c"> CREATE TABLE</label>
         <label><input type="radio" name="q3" value="d"> CREATE USER</label>
+        <div id="feedback3" class="feedback"></div>
     </div>
-
+    
     <div class="question">
         <h3>4. ¿Qué vista se utiliza para consultar la información de los ficheros de datos en Oracle?</h3>
         <label><input type="radio" name="q4" value="a"> V$DATABASE</label>
         <label><input type="radio" name="q4" value="b"> V$DATAFILE</label>
         <label><input type="radio" name="q4" value="c"> DBA_TABLESPACES</label>
         <label><input type="radio" name="q4" value="d"> USER_TABLES</label>
+        <div id="feedback4" class="feedback"></div>
     </div>
-
+    
     <div class="question">
         <h3>5. ¿Qué significa el término "tablespace" en Oracle?</h3>
         <label><input type="radio" name="q5" value="a"> Es un conjunto de bases de datos distribuidas.</label>
         <label><input type="radio" name="q5" value="b"> Es un espacio lógico para organizar ficheros de datos.</label>
         <label><input type="radio" name="q5" value="c"> Es un archivo de configuración de Oracle.</label>
         <label><input type="radio" name="q5" value="d"> Es un protocolo de red para compartir tablas.</label>
+        <div id="feedback5" class="feedback"></div>
     </div>
-
+    
     <div class="question">
         <h3>6. ¿Qué comando se usa para crear un usuario en Oracle?</h3>
         <label><input type="radio" name="q6" value="a"> CREATE DATABASE</label>
         <label><input type="radio" name="q6" value="b"> CREATE USER</label>
         <label><input type="radio" name="q6" value="c"> CREATE ACCOUNT</label>
         <label><input type="radio" name="q6" value="d"> ADD USER</label>
+        <div id="feedback6" class="feedback"></div>
     </div>
-
+    
     <div class="question">
         <h3>7. ¿Cuál es el propósito de los ficheros de control en Oracle?</h3>
         <label><input type="radio" name="q7" value="a"> Almacenar las transacciones pendientes.</label>
-        <label><input type="radio" name="q7" value="b"> Mantener la integridad de la base de datos.</label>
+        <label><input type="radio" name="q7" value="b"> Mantener la integridad de la base de datos .</label>
         <label><input type="radio" name="q7" value="c"> Almacenar datos de usuario.</label>
         <label><input type="radio" name="q7" value="d"> Hacer copias de seguridad automáticas.</label>
+        <div id="feedback7" class="feedback"></div>
     </div>
-
+    
     <div class="question">
         <h3>8. ¿Qué comando se utiliza para asignar permisos a un usuario en Oracle?</h3>
         <label><input type="radio" name="q8" value="a"> GRANT</label>
         <label><input type="radio" name="q8" value="b"> ALLOW</label>
         <label><input type="radio" name="q8" value="c"> PERMIT</label>
         <label><input type="radio" name="q8" value="d"> ENABLE</label>
+        <div id="feedback8" class="feedback"></div>
     </div>
-
+    
     <div class="question">
         <h3>9. ¿Qué vista permite consultar las sesiones activas en Oracle?</h3>
         <label><input type="radio" name="q9" value="a"> V$ACTIVE_SESSION</label>
         <label><input type="radio" name="q9" value="b"> V$SESSION</label>
         <label><input type="radio" name="q9" value="c"> V$PROCESS</label>
         <label><input type="radio" name="q9" value="d"> V$USER_SESSIONS</label>
+        <div id="feedback9" class="feedback"></div>
     </div>
+    
     <div class="question">
         <h3>10. ¿Qué tabla contiene información sobre los objetos de la base de datos de un usuario?</h3>
         <label><input type="radio" name="q10" value="a"> DBA_OBJECTS</label>
         <label><input type="radio" name="q10" value="b"> USER_OBJECTS</label>
         <label><input type="radio" name="q10" value="c"> ALL_OBJECTS</label>
         <label><input type="radio" name="q10" value="d"> V$OBJECTS</label>
+        <div id="feedback10" class="feedback"></div>
     </div>
+    
     <div class="question">
         <h3>11. ¿Qué comando se utiliza para consultar las tablas de un usuario en Oracle?</h3>
         <label><input type="radio" name="q11" value="a"> SELECT * FROM USER_TABLES</label>
         <label><input type="radio" name="q11" value="b"> SELECT * FROM DBA_TABLES</label>
         <label><input type="radio" name="q11" value="c"> SELECT * FROM V$TABLES</label>
         <label><input type="radio" name="q11" value="d"> SELECT * FROM ALL_TABLES</label>
+        <div id="feedback11" class="feedback"></div>
     </div>
     
     <div class="question">
@@ -198,6 +290,7 @@
         <label><input type="radio" name="q12" value="b"> Muestra el estado de las conexiones de red.</label>
         <label><input type="radio" name="q12" value="c"> Contiene detalles sobre los permisos de usuario.</label>
         <label><input type="radio" name="q12" value="d"> Contiene información sobre los procesos del sistema operativo.</label>
+        <div id="feedback12" class="feedback"></div>
     </div>
     
     <div class="question">
@@ -206,6 +299,7 @@
         <label><input type="radio" name="q13" value="b"> DBA_CONTROL</label>
         <label><input type="radio" name="q13" value="c"> V$DATABASE</label>
         <label><input type="radio" name="q13" value="d"> USER_CONTROL</label>
+        <div id="feedback13" class="feedback"></div>
     </div>
     
     <div class="question">
@@ -214,6 +308,7 @@
         <label><input type="radio" name="q14" value="b"> Revocar permisos de un usuario.</label>
         <label><input type="radio" name="q14" value="c"> Consultar información de roles de usuario.</label>
         <label><input type="radio" name="q14" value="d"> Crear una nueva tabla en una base de datos.</label>
+        <div id="feedback14" class="feedback"></div>
     </div>
     
     <div class="question">
@@ -222,6 +317,7 @@
         <label><input type="radio" name="q15" value="b"> Redo Log</label>
         <label><input type="radio" name="q15" value="c"> Archivo de auditoría.</label>
         <label><input type="radio" name="q15" value="d"> Archivo de control.</label>
+        <div id="feedback15" class="feedback"></div>
     </div>
     
     <div class="question">
@@ -230,6 +326,7 @@
         <label><input type="radio" name="q16" value="b"> V$ACTIVE_PROCESSES</label>
         <label><input type="radio" name="q16" value="c"> DBA_PROCESS</label>
         <label><input type="radio" name="q16" value="d"> USER_PROCESS</label>
+        <div id="feedback16" class="feedback"></div>
     </div>
     
     <div class="question">
@@ -238,6 +335,7 @@
         <label><input type="radio" name="q17" value="b"> Un archivo que contiene todas las transacciones pendientes.</label>
         <label><input type="radio" name="q17" value="c"> Un archivo que almacena datos de usuario y del sistema.</label>
         <label><input type="radio" name="q17" value="d"> Un archivo que contiene información de auditoría.</label>
+        <div id="feedback17" class="feedback"></div>
     </div>
     
     <div class="question">
@@ -246,6 +344,7 @@
         <label><input type="radio" name="q18" value="b"> Un espacio lógico con un único fichero de datos de gran tamaño.</label>
         <label><input type="radio" name="q18" value="c"> Un archivo que almacena las transacciones de gran tamaño.</label>
         <label><input type="radio" name="q18" value="d"> Un espacio de tablas temporal.</label>
+        <div id="feedback18" class="feedback"></div>
     </div>
     
     <div class="question">
@@ -254,6 +353,7 @@
         <label><input type="radio" name="q19" value="b"> Permite reducir el tamaño de los archivos de datos.</label>
         <label><input type="radio" name="q19" value="c"> Permite crear tablas temporales de forma automática.</label>
         <label><input type="radio" name="q19" value="d"> Permite crear usuarios con permisos extendidos.</label>
+        <div id="feedback19" class="feedback"></div>
     </div>
     
     <div class="question">
@@ -261,14 +361,17 @@
         <label><input type="radio" name="q20" value="a"> V$PARAMETER</label>
         <label><input type="radio" name="q20" value="b"> USER_PARAMS</label>
         <label><input type="radio" name="q20" value="c"> V$INIT_PARAMS</label>
-        <label><input type="radio" name="q20" value="d"> DBA_PARAMS</label>
+     <label><input type="radio" name="q20" value="d"> DBA_PARAMS</label>
+        <div id="feedback20" class="feedback"></div>
     </div>
+    
     <div class="question">
         <h3>21. ¿Qué tipo de indexación utiliza Oracle para optimizar las búsquedas en tablas?</h3>
         <label><input type="radio" name="q21" value="a"> Indexación secuencial</label>
         <label><input type="radio" name="q21" value="b"> Indexación B-tree</label>
         <label><input type="radio" name="q21" value="c"> Indexación hash</label>
         <label><input type="radio" name="q21" value="d"> Indexación binaria</label>
+        <div id="feedback21" class="feedback"></div>
     </div>
     
     <div class="question">
@@ -277,13 +380,16 @@
         <label><input type="radio" name="q22" value="b"> ALTER TABLE</label>
         <label><input type="radio" name="q22" value="c"> CHANGE TABLE</label>
         <label><input type="radio" name="q22" value="d"> UPDATE TABLE</label>
+        <div id="feedback22" class="feedback"></div>
     </div>
+    
     <div class="question">
         <h3>23. ¿Qué vista en Oracle proporciona información sobre los índices de usuario?</h3>
         <label><input type="radio" name="q23" value="a"> DBA_INDEXES</label>
         <label><input type="radio" name="q23" value="b"> USER_INDEXES</label>
         <label><input type="radio" name="q23" value="c"> V$INDEXES</label>
         <label><input type="radio" name="q23" value="d"> ALL_INDEXES</label>
+        <div id="feedback23" class="feedback"></div>
     </div>
     
     <div class="question">
@@ -292,6 +398,7 @@
         <label><input type="radio" name="q24" value="b"> Un índice que no permite valores duplicados en la columna.</label>
         <label><input type="radio" name="q24" value="c"> Un índice que ordena los valores de forma aleatoria.</label>
         <label><input type="radio" name="q24" value="d"> Un índice que solo se utiliza en tablas temporales.</label>
+        <div id="feedback24" class="feedback"></div>
     </div>
     
     <div class="question">
@@ -300,6 +407,7 @@
         <label><input type="radio" name="q25" value="b"> DELETE TABLE</label>
         <label><input type="radio" name="q25" value="c"> REMOVE TABLE</label>
         <label><input type="radio" name="q25" value="d"> ERASE TABLE</label>
+        <div id="feedback25" class="feedback"></div>
     </div>
     
     <div class="question">
@@ -308,6 +416,7 @@
         <label><input type="radio" name="q26" value="b"> DBA_TRIGGERS</label>
         <label><input type="radio" name="q26" value="c"> ALL_TRIGGERS</label>
         <label><input type="radio" name="q26" value="d"> V$TRIGGERS</label>
+        <div id="feedback26" class="feedback"></div>
     </div>
     
     <div class="question">
@@ -316,6 +425,7 @@
         <label><input type="radio" name="q27" value="b"> Un proceso que borra tablas automáticamente.</label>
         <label><input type="radio" name="q27" value="c"> Un tipo de índice especial para grandes bases de datos.</label>
         <label><input type="radio" name="q27" value="d"> Un script que se ejecuta cada día a una hora determinada.</label>
+        <div id="feedback27" class="feedback"></div>
     </div>
     
     <div class="question">
@@ -324,6 +434,7 @@
         <label><input type="radio" name="q28" value="b"> DBA_SYS_PRIVS</label>
         <label><input type="radio" name="q28" value="c"> V$PRIVILEGES</label>
         <label><input type="radio" name="q28" value="d"> ALL_PRIVILEGES</label>
+        <div id="feedback28" class="feedback"></div>
     </div>
     
     <div class="question">
@@ -332,6 +443,7 @@
         <label><input type="radio" name="q29" value="b"> UPDATE</label>
         <label><input type="radio" name="q29" value="c"> ALTER TABLE</label>
         <label><input type="radio" name="q29" value="d"> MODIFY</label>
+        <div id="feedback29" class="feedback"></div>
     </div>
     
     <div class="question">
@@ -340,20 +452,25 @@
         <label><input type="radio" name="q30" value="b"> CHAR</label>
         <label><input type="radio" name="q30" value="c"> CLOB</label>
         <label><input type="radio" name="q30" value="d"> TEXT</label>
+        <div id="feedback30" class="feedback"></div>
     </div>
+    
     <div class="question">
         <h3>31. ¿Qué comando se utiliza para crear un índice en una tabla de Oracle?</h3>
         <label><input type="radio" name="q31" value="a"> CREATE INDEX</label>
         <label><input type="radio" name="q31" value="b"> ADD INDEX</label>
         <label><input type="radio" name="q31" value="c"> INDEX TABLE</label>
         <label><input type="radio" name="q31" value="d"> NEW INDEX</label>
+        <div id="feedback31" class="feedback"></div>
     </div>
+    
     <div class="question">
         <h3>32. ¿Qué función se utiliza para contar el número de filas en una consulta SQL?</h3>
         <label><input type="radio" name="q32" value="a"> COUNT()</label>
         <label><input type="radio" name="q32" value="b"> SUM()</label>
         <label><input type="radio" name="q32" value="c"> TOTAL()</label>
         <label><input type="radio" name="q32" value="d"> NUMBER()</label>
+        <div id="feedback32" class="feedback"></div>
     </div>
     
     <div class="question">
@@ -362,14 +479,16 @@
         <label><input type="radio" name="q33" value="b"> FILTER</label>
         <label><input type="radio" name="q33" value="c"> HAVING</label>
         <label><input type="radio" name="q33" value="d"> GROUP BY</label>
+        <div id="feedback33" class="feedback"></div>
     </div>
     
     <div class="question">
         <h3>34. ¿Qué tipo de relación se establece entre dos tablas cuando ambas tienen la misma clave primaria?</h3>
         <label><input type="radio" name="q34" value="a"> Relación uno a uno</label>
-        <label><input type="radio" name="q34" value="b"> Relación uno a muchos</label>
+        <label><input type="radio" name="q34" value="b"> Rel ación uno a muchos</label>
         <label><input type="radio" name="q34" value="c"> Relación muchos a muchos</label>
         <label><input type="radio" name="q34" value="d"> No hay relación</label>
+        <div id="feedback34" class="feedback"></div>
     </div>
     
     <div class="question">
@@ -378,6 +497,7 @@
         <label><input type="radio" name="q35" value="b"> Las transacciones se confirman automáticamente.</label>
         <label><input type="radio" name="q35" value="c"> Se pueden agrupar varias operaciones en una sola transacción.</label>
         <label><input type="radio" name="q35" value="d"> Las transacciones no afectan a la integridad de la base de datos.</label>
+        <div id="feedback35" class="feedback"></div>
     </div>
     
     <div class="question">
@@ -386,6 +506,7 @@
         <label><input type="radio" name="q36" value="b"> DENY</label>
         <label><input type="radio" name="q36" value="c"> REMOVE</label>
         <label><input type="radio" name="q36" value="d"> FORBID</label>
+        <div id="feedback36" class="feedback"></div>
     </div>
     
     <div class="question">
@@ -394,6 +515,7 @@
         <label><input type="radio" name="q37" value="b"> DBA_PROCEDURES</label>
         <label><input type="radio" name="q37" value="c"> ALL_PROCEDURES</label>
         <label><input type="radio" name="q37" value="d"> V$PROCEDURES</label>
+        <div id="feedback37" class="feedback"></div>
     </div>
     
     <div class="question">
@@ -402,6 +524,7 @@
         <label><input type="radio" name="q38" value="b"> NUMBER(1)</label>
         <label><input type="radio" name="q38" value="c"> CHAR(1)</label>
         <label><input type="radio" name="q38" value="d"> VARCHAR2(1)</label>
+        <div id="feedback38" class="feedback"></div>
     </div>
     
     <div class="question">
@@ -410,6 +533,7 @@
         <label><input type="radio" name="q39" value="b"> CONCAT()</label>
         <label><input type="radio" name="q39" value="c"> ||</label>
         <label><input type="radio" name="q39" value="d"> JOIN()</label>
+        <div id="feedback39" class="feedback"></div>
     </div>
     
     <div class="question">
@@ -418,50 +542,152 @@
         <label><input type="radio" name="q40" value="b"> NEW VIEW</label>
         <label><input type="radio" name="q40" value="c"> DEFINE VIEW</label>
         <label><input type="radio" name="q40" value="d"> ADD VIEW</label>
+        <div id="feedback40" class="feedback"></div>
     </div>
-    
-    <button type="button" class="submit-btn" onclick="calcularResultado()">Enviar respuestas</button>
 
+    <button type="button" class="submit-btn" onclick="calcularResultado()">Enviar respuestas</button>
 </form>
 
-<div class="result" id="result"></div>
+<!-- Botón Subir -->
+<button id="scrollToTopBtn" style="display: none; position: fixed; bottom: 20px; right: 20px; background-color: rgb(76, 175, 80); color: white; border: none; border-radius: 5px; padding: 10px 15px; font-size: 16px; cursor: pointer;">
+    <i class="fas fa-arrow-up"></i> Subir
+</button>
 
 <script>
+    const totalPreguntas = 40; // Cambia esto al total correcto
+
+    const respuestasCorrectas = {
+        q1: "b", q2: "b", q3: "a", q4: "b", q5: "b",
+        q6: "b", q7: "b", q8: "a", q9: "b", q10: "b",
+        q11: "a", q12: "a", q13: "a", q14: "a", q15: "b",
+        q16: "a", q17: "c", q18: "b", q19: "a", q20: "a",
+        q21: "b", q22: "b", q23: "b", q24: "b", q25: "a",
+        q26: "a", q27: "a", q28: "b", q29: "b", q30: "a",
+        q31: "a", q32: "a", q33: "a", q34: "a", q35: "c",
+        q36: "a", q37: "b", q38: "b", q39: "c", q40: "a"
+    };
+
+    let puntuacion = 0;
+    let aciertos = 0;
+    let incorrectas = 0;
+    let sinResponder = 0;
+
     function calcularResultado() {
-        // Respuestas correctas de las 40 preguntas
-        const respuestasCorrectas = {
-            q1: "b", q2: "b", q3: "a", q4: "b", q5: "b",
-            q6: "b", q7: "b", q8: "a", q9: "b", q10: "b",
-            q11: "a", q12: "a", q13: "a", q14: "a", q15: "b",
-            q16: "a", q17: "c", q18: "b", q19: "a", q20: "a",
-            q21: "b", q22: "b", q23: "b", q24: "b", q25: "a",
-            q26: "a", q27: "a", q28: "b", q29: "b", q30: "a",
-            q31: "a", q32: "a", q33: "a", q34: "a", q35: "c",
-            q36: "a", q37: "b", q38: "b", q39: "c", q40: "a"
-        };
+        puntuacion = 0; // Reiniciar puntuación
+        aciertos = 0; // Reiniciar aciertos
+        incorrectas = 0; // Reiniciar incorrectas
+        sinResponder = 0; // Reiniciar sin responder
 
-        let puntuacion = 0;
-        let aciertos = 0;
-        const totalPreguntas = 40;  // Total de preguntas
-
-        // Recorremos las respuestas del formulario
         for (let i = 1; i <= totalPreguntas; i++) {
             const pregunta = document.querySelector(`input[name="q${i}"]:checked`);
+            const feedback = document.getElementById(`feedback${i}`);
 
             if (pregunta) {
                 if (pregunta.value === respuestasCorrectas[`q${i}`]) {
-                    puntuacion += 1;  // Sumar 1 por respuesta correcta
+                    puntuacion += 1;
                     aciertos++;
+                    feedback.textContent = "¡Correcto!";
+                    feedback.classList.add("correct");
+                    feedback.classList.remove("incorrect", "empty-result");
                 } else {
-                    puntuacion -= 2;  // Restar 2 por respuesta incorrecta
+                    incorrectas++;
+                    feedback.textContent = "Incorrecto.";
+                    feedback.classList.add("incorrect");
+                    feedback.classList.remove("correct", "empty-result");
                 }
+            } else {
+                sinResponder++;
+                feedback.textContent = "No respondida.";
+                feedback.classList.add("empty-result");
+                feedback.classList.remove("correct", "incorrect");
             }
         }
 
-        // Mostrar resultados
-        const notaSobreDiez = (puntuacion / totalPreguntas) * 10;
-        document.getElementById('result').innerHTML = `Has acertado ${aciertos}/${totalPreguntas} preguntas. Tu puntuación es: ${notaSobreDiez.toFixed(2)} sobre 10.`;
+        // Calcular la penalización por respuestas incorrectas
+        const penalizacion = Math.floor(incorrectas / 2);
+        puntuacion = aciertos - penalizacion; // Restar las penalizaciones
+
+        // Asegurarse de que la puntuación no sea menor a 0 (opcional)
+        // puntuacion = Math.max(puntuacion, 0); // Descomenta si no quieres puntuaciones negativas
+
+        let totalRespuestas = aciertos + incorrectas;
+
+        const notaSobreDiez = ((puntuacion) / totalPreguntas) * 10;
+
+        document.getElementById('result').innerHTML = `
+            <h2 style="text-align: center;">Respondidas: ${totalRespuestas} / ${totalPreguntas}</h2>
+            <div style="display: flex; justify-content: center;">
+                <span style="flex: 1; text-align: center; color: green; margin-right: 10em;">
+                    Correctas: <span style="color: green;">${aciertos} / ${totalPreguntas}</span>
+                </span>
+                <span style="flex: 1; text-align: center; color: orange;">
+                    No Respondidas: <span style="color: orange;">${sinResponder} / ${totalPreguntas}</span>
+                </span>
+                <span style="flex: 1; text-align: center; color: red; margin-left: 10em;">
+                    Incorrectas: <span style="color: red;">${incorrectas} / ${totalPreguntas}</span>
+                </span>
+            </div>
+            <p style="text-align: center;"><strong>Tu puntuación es: <span style="color: black;">${notaSobreDiez.toFixed(2)} sobre 10</span></strong></p>
+        `;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+
+    const preguntas = document.querySelectorAll('.question');
+
+    function mostrarCorrectas() {
+        preguntas.forEach((pregunta, index) => {
+            const input = pregunta.querySelector('input[type="radio"]:checked');
+            const preguntaIndex = `q${index + 1}`; // Ajustar el índice a q1, q2, etc.
+            if (input && input.value === respuestasCorrectas[preguntaIndex]) {
+                pregunta.style.display = 'block'; // Mostrar si es correcta
+            } else {
+                pregunta.style.display = 'none'; // Ocultar si no es correcta
+            }
+        });
+    }
+
+    function mostrarIncorrectas() {
+        preguntas.forEach((pregunta, index) => {
+            const input = pregunta.querySelector('input[type="radio"]:checked');
+            const preguntaIndex = `q${index + 1}`; // Ajustar el índice a q1, q2, etc.
+            if (input && input.value !== respuestasCorrectas[preguntaIndex]) {
+                pregunta.style.display = 'block'; // Mostrar si es incorrecta
+            } else {
+                pregunta.style.display = 'none'; // Ocultar si no es incorrecta
+            }
+        });
+    }
+
+    function mostrarNoContestadas() {
+        preguntas.forEach((pregunta, index) => {
+            const input = pregunta.querySelector('input[type="radio"]:checked');
+            if (!input) {
+                pregunta.style.display = 'block'; // Mostrar si no está contestada
+            } else {
+                pregunta.style.display = 'none'; // Ocultar si está contestada
+            }
+        });
+    }
+
+    function mostrarTodas() {
+        preguntas.forEach(pregunta => {
+            pregunta.style.display = 'block'; // Mostrar todas las preguntas
+        });
+    }
+
+    window.onscroll = function() {
+        const button = document.getElementById('scrollToTopBtn');
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            button.style.display = "block"; // Mostrar el botón
+        } else {
+            button.style.display = "none"; // Ocultar el botón
+        }
+    };
+
+    document.getElementById('scrollToTopBtn').onclick = function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' }); // Subir suavemente
+    };
 </script>
+
 </body>
 </html>
