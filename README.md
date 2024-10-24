@@ -2,9 +2,7 @@
 
 Este repositorio contiene una colección de **exámenes HTML**, **pruebas HTML** y **sitios web de ejemplo** que he creado. Es un espacio diseñado para mantener mis trabajos en la nube y facilitar su visualización.
 
-[![Web 1](https://img.shields.io/badge/Web%201-Visit%20Now-brightgreen)](#) <!-- Reemplaza con el URL correspondiente -->
-[![Web 2](https://img.shields.io/badge/Web%202-Visit%20Now-blue)](#) <!-- Reemplaza con el URL correspondiente -->
-[![Web 3](https://img.shields.io/badge/Web%203-Visit%20Now-red)](#) <!-- Reemplaza con el URL correspondiente -->
+[![Web 1](https://img.shields.io/badge/Tema_1_Examen_Test_ASGBD%20-Click%20-brightgreen)](https://htmlpreview.github.io/?https://github.com/Fedes10/Compartidos-Fede-HTML/blob/main/Ex%C3%A1menes/1%C2%BA%20Examen%20Base%20de%20Datos%202%C2%BAASIR%20Fede.html) <!-- Reemplaza con el URL correspondiente -->
 
 ---
 
@@ -12,9 +10,7 @@ Este repositorio contiene una colección de **exámenes HTML**, **pruebas HTML**
 
 A continuación, encontrarás un índice que te permitirá acceder a las webs que iré añadiendo. Cada botón llevará a la web correspondiente en el futuro:
 
-- [Web 1](#) <!-- Reemplaza con el URL correspondiente -->
-- [Web 2](#) <!-- Reemplaza con el URL correspondiente -->
-- [Web 3](#) <!-- Reemplaza con el URL correspondiente -->
+- [Examen Tema 1 Base de Datos 2ºASIR Fede]([http://127.0.0.1:5500/RESUMENES/Tema%201%20Base%20de%20datos%202%C2%BAASIR.html](https://htmlpreview.github.io/?https://github.com/Fedes10/Compartidos-Fede-HTML/blob/main/Ex%C3%A1menes/1%C2%BA%20Examen%20Base%20de%20Datos%202%C2%BAASIR%20Fede.html)) <!-- Reemplaza con el URL correspondiente -->
 
 ---
 
