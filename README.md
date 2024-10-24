@@ -10,7 +10,8 @@ Este repositorio contiene una colección de **exámenes HTML**, **pruebas HTML**
 
 A continuación, encontrarás un índice que te permitirá acceder a las webs que iré añadiendo. Cada botón llevará a la web correspondiente en el futuro:
 
-- [Examen Tema 1 Base de Datos 2ºASIR Fede]([http://127.0.0.1:5500/RESUMENES/Tema%201%20Base%20de%20datos%202%C2%BAASIR.html](https://htmlpreview.github.io/?https://github.com/Fedes10/Compartidos-Fede-HTML/blob/main/Ex%C3%A1menes/1%C2%BA%20Examen%20Base%20de%20Datos%202%C2%BAASIR%20Fede.html)) <!-- Reemplaza con el URL correspondiente -->
+- [Examen Tema 1 Base de Datos 2ºASIR Fede](https://htmlpreview.github.io/?https://github.com/Fedes10/Compartidos-Fede-HTML/blob/main/Ex%C3%A1menes/1%C2%BA%20Examen%20Base%20de%20Datos%202%C2%BAASIR%20Fede.html)
+
 
 ---
 
